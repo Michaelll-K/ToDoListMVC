@@ -1,0 +1,37 @@
+﻿@model IEnumerable<ToDoListMVC.Models.ToDoModel>
+
+@{
+    ViewData["Title"] = "Main";
+}
+
+<h1 class="badge-dark">Lista zadań</h1>
+
+<p>
+    <a class="btn btn-primary" asp-action="Create">Dodaj zadanie</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Name)
+            </th>
+
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @Html.ActionLink("Zrobione", "Done", new { id = item.ToDoId }, new { @class = "btn btn-success"}) 
+                @Html.ActionLink("Edytuj", "Edit", new { id = item.ToDoId }, new { @class = "btn btn-warning" }) 
+                @Html.ActionLink("Szczegóły", "Details", new { id = item.ToDoId }, new { @class = "btn btn-info" }) 
+                @Html.ActionLink("Usuń", "Delete", new { id = item.ToDoId }, new { @class = "btn btn-danger" })
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
